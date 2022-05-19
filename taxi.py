@@ -13,10 +13,8 @@ model = compose.Select('dropoff_latitude', 'dropoff_longitude', 'passenger_count
 model |= preprocessing.StandardScaler()
 model += (compose.Select('store_and_fwd_flag', 'vendor_id') | preprocessing.OneHotEncoder())
 
-if True:
-    model |= tree.HoeffdingOptionTreeRegressor()
-else:
-    model |= tree.HoeffdingTreeRegressor()
+model |= tree.HoeffdingOptionTreeRegressor()
+
 
 metric = metrics.MAE()
 
